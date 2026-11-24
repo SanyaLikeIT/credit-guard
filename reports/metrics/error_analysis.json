@@ -1,0 +1,30 @@
+{
+  "false_positive": {
+    "n_records": 1097,
+    "missing_income_rate": 0.14767547857793983,
+    "median_age": 46.0,
+    "median_utilization": 0.901475488,
+    "debt_ratio_above_10_rate": 0.14949863263445762
+  },
+  "false_negative": {
+    "n_records": 401,
+    "missing_income_rate": 0.13466334164588528,
+    "median_age": 47.0,
+    "median_utilization": 0.43157878,
+    "debt_ratio_above_10_rate": 0.14713216957605985
+  },
+  "within_0.02_of_threshold": {
+    "n_records": 334,
+    "missing_income_rate": 0.11676646706586827,
+    "median_age": 47.0,
+    "median_utilization": 0.7313252804999999,
+    "debt_ratio_above_10_rate": 0.12574850299401197
+  },
+  "high_confidence_error": {
+    "n_records": 82,
+    "missing_income_rate": 0.24390243902439024,
+    "median_age": 52.5,
+    "median_utilization": 0.060345449,
+    "debt_ratio_above_10_rate": 0.24390243902439024
+  }
+}

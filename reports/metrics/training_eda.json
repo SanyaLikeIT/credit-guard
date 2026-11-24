@@ -1,0 +1,40 @@
+{
+  "partition": "train",
+  "n_records": 89975,
+  "n_features": 10,
+  "positive_rate": 0.06681856071130869,
+  "dtypes": {
+    "RevolvingUtilizationOfUnsecuredLines": "float64",
+    "age": "float64",
+    "NumberOfTime30-59DaysPastDueNotWorse": "float64",
+    "DebtRatio": "float64",
+    "MonthlyIncome": "float64",
+    "NumberOfOpenCreditLinesAndLoans": "float64",
+    "NumberOfTimes90DaysLate": "float64",
+    "NumberRealEstateLoansOrLines": "float64",
+    "NumberOfTime60-89DaysPastDueNotWorse": "float64",
+    "NumberOfDependents": "float64"
+  },
+  "missing": {
+    "RevolvingUtilizationOfUnsecuredLines": 0,
+    "age": 0,
+    "NumberOfTime30-59DaysPastDueNotWorse": 0,
+    "DebtRatio": 0,
+    "MonthlyIncome": 17945,
+    "NumberOfOpenCreditLinesAndLoans": 0,
+    "NumberOfTimes90DaysLate": 0,
+    "NumberRealEstateLoansOrLines": 0,
+    "NumberOfTime60-89DaysPastDueNotWorse": 0,
+    "NumberOfDependents": 2319
+  },
+  "duplicate_feature_rows": 363,
+  "conflicting_feature_groups": 21,
+  "zero_age": 0,
+  "utilization_above_one": 1994,
+  "special_delinquency_codes": {
+    "NumberOfTime30-59DaysPastDueNotWorse": 147,
+    "NumberOfTime60-89DaysPastDueNotWorse": 147,
+    "NumberOfTimes90DaysLate": 147
+  },
+  "all_three_codes_cooccur": 147
+}

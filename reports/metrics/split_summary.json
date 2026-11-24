@@ -1,0 +1,31 @@
+{
+  "seed": 42,
+  "dataset_sha256": "1bd46da486a5708c58c7b01a034fae2a13b327f6f7b62ea7ba4fe3b5824b24ac",
+  "strategy": "Stratified feature-group holdouts; majority-label group strata; conflicts retained together",
+  "partitions": {
+    "train": {
+      "n_records": 89975,
+      "positive_rate": 0.06681856071130869
+    },
+    "selection": {
+      "n_records": 22499,
+      "positive_rate": 0.06706964753989066
+    },
+    "calibration": {
+      "n_records": 15018,
+      "positive_rate": 0.06685310960181116
+    },
+    "threshold": {
+      "n_records": 7508,
+      "positive_rate": 0.06659563132658497
+    },
+    "test": {
+      "n_records": 15000,
+      "positive_rate": 0.06673333333333334
+    }
+  },
+  "n_records": 150000,
+  "duplicate_feature_rows": 646,
+  "conflicting_feature_groups": 37,
+  "overlap_checks_passed": true
+}

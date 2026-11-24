@@ -1,0 +1,46 @@
+{
+  "roc_auc": 0.8682034088491692,
+  "average_precision": 0.40223393156544657,
+  "precision": 0.3535651149086623,
+  "recall": 0.5994005994005994,
+  "f1": 0.4447739065974796,
+  "accuracy": 0.9001333333333333,
+  "balanced_accuracy": 0.7605189296024355,
+  "brier_score": 0.04872112207049317,
+  "log_loss": 0.17608773478754314,
+  "confusion_matrix": [
+    [
+      12902,
+      1097
+    ],
+    [
+      401,
+      600
+    ]
+  ],
+  "threshold": 0.15931719072828796,
+  "tn": 12902,
+  "fp": 1097,
+  "fn": 401,
+  "tp": 600,
+  "total_cost": 3102.0,
+  "cost_per_record": 0.2068,
+  "n_records": 15000,
+  "positive_rate": 0.06673333333333334,
+  "confidence_intervals_95": {
+    "roc_auc": {
+      "lower": 0.8551288922877965,
+      "upper": 0.8780285736836205
+    },
+    "average_precision": {
+      "lower": 0.37353727824056204,
+      "upper": 0.43017393497765183
+    },
+    "brier_score": {
+      "lower": 0.04749008648860326,
+      "upper": 0.05026870980841732
+    }
+  },
+  "artifact_sha256": "91dd6288680eefbe04e545e7c32e2d85d41cdcb29e39a58abf413ca24118c7de",
+  "dataset_sha256": "1bd46da486a5708c58c7b01a034fae2a13b327f6f7b62ea7ba4fe3b5824b24ac"
+}

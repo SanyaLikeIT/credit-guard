@@ -1,0 +1,7 @@
+{
+  "partition": "selection",
+  "sample_size": 400,
+  "output_space": "uncalibrated log-odds (raw model margin)",
+  "explains_calibrated_probability": false,
+  "additivity_checked": true
+}
