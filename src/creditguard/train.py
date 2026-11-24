@@ -36,7 +36,9 @@ def run_experiment(config):
     started = time.perf_counter()
     root = Path(config["report_dir"])
     metric_dir, figures, private = root / "metrics", root / "figures", root / "private"
-    if (metric_dir / "final_test_metrics.json").exists():
+    if (metric_dir / "final_test_metrics.json").exists() and (
+        Path(config["model_dir"]) / "pipeline.joblib"
+    ).exists():
         raise ValueError(
             "This run already has a final evaluation. Use a distinct output directory "
             "for a new experiment; do not tune on the same final holdout."

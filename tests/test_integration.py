@@ -5,6 +5,7 @@ import pytest
 
 from creditguard.config import load_config
 from creditguard.data import TARGET
+from creditguard.metrics import write_json
 from creditguard.predict import load_predictor
 from creditguard.train import run_experiment
 
@@ -25,6 +26,10 @@ def test_end_to_end_synthetic_training(sample_data, tmp_path):
         bootstrap_samples=5,
         threads=2,
         synthetic_test_run=True,
+    )
+    # A fresh clone has published aggregate reports but no ignored model weights.
+    write_json(
+        config["report_dir"] / "metrics/final_test_metrics.json", {"synthetic_fixture": True}
     )
     predictor, final = run_experiment(config)
     assert 0 <= final["average_precision"] <= 1

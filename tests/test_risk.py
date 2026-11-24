@@ -112,3 +112,60 @@ def test_confusion_and_cost_definitions():
     assert result["confusion_matrix"] == [[1, 1], [1, 1]]
     assert result["total_cost"] == 6
     assert result["cost_per_record"] == 1.5
+
+
+@pytest.mark.parametrize("family", ["catboost", "forest"])
+def test_tree_explanations_preserve_feature_names(sample_data, family):
+    from creditguard.config import load_config
+    from creditguard.modeling import build_pipeline
+
+    X, y = sample_data
+    config = load_config(profile="quick")
+    config.update(trees=8, boosting_iterations=15, threads=2)
+    pipeline = build_pipeline(family, config, engineered=True).fit(X, y)
+    explanation, space = explain_pipeline(pipeline, X.head(4))
+    assert explanation.values.shape == (4, len(pipeline[:-1].get_feature_names_out()))
+    assert explanation.feature_names == list(pipeline[:-1].get_feature_names_out())
+    assert "uncalibrated" in space
+
+
+def test_unsupported_explanations_are_explicit(sample_data):
+    from creditguard.config import load_config
+    from creditguard.modeling import build_pipeline
+
+    X, y = sample_data
+    pipeline = build_pipeline("dummy", load_config(profile="quick")).fit(X, y)
+    with pytest.raises(ExplanationUnavailable, match="not available"):
+        explain_pipeline(pipeline, X.head())
+
+
+def test_prediction_cli_loads_canonical_artifacts(trained_predictor, tmp_path):
+    import json
+    import subprocess
+    import sys
+
+    from creditguard.demo import DEMO_PROFILES
+
+    models = tmp_path / "models"
+    save_predictor(trained_predictor, models, {"model_name": "test"})
+    command = [sys.executable, "-m", "creditguard.predict", "--model-dir", str(models)]
+    single = subprocess.run(
+        [*command, "--demo", "lower"], capture_output=True, text=True, check=True
+    )
+    expected = trained_predictor.predict(pd.DataFrame([DEMO_PROFILES["lower"]]))
+    assert json.loads(single.stdout)[0]["risk_probability"] == pytest.approx(
+        expected.risk_probability.iloc[0]
+    )
+    source, output = tmp_path / "input.csv", tmp_path / "predictions.csv"
+    frame = pd.DataFrame(list(DEMO_PROFILES.values()))
+    frame.to_csv(source, index=False)
+    subprocess.run(
+        [*command, "--csv", str(source), "--output", str(output)],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    actual = pd.read_csv(output)
+    np.testing.assert_allclose(
+        actual.risk_probability, trained_predictor.predict(frame).risk_probability
+    )

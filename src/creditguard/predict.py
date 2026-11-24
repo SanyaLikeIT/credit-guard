@@ -119,4 +119,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # joblib resolves stored classes by their canonical module name, not __main__.
+    from creditguard.predict import main as run_cli
+
+    run_cli()
