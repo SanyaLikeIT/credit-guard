@@ -1,0 +1,31 @@
+seed: 42
+dataset: data/raw/cs-training.csv
+model_dir: models/final
+report_dir: reports
+threads: 4
+split_proportions:
+  train: 0.60
+  selection: 0.15
+  calibration: 0.10
+  threshold: 0.05
+  test: 0.10
+clipping_quantile: 0.995
+calibration_validation_fraction: 0.5
+cost_fp: 1.0
+cost_fn: 5.0
+cost_ratios: [1, 2, 5, 10, 20]
+profiles:
+  quick:
+    cv_folds: 2
+    search_trials: 1
+    trees: 40
+    boosting_iterations: 80
+    shap_sample: 40
+    bootstrap_samples: 50
+  full:
+    cv_folds: 3
+    search_trials: 3
+    trees: 180
+    boosting_iterations: 600
+    shap_sample: 400
+    bootstrap_samples: 300
